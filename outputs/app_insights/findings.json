@@ -1,0 +1,437 @@
+{
+  "slug": "app_insights",
+  "code": "EDA 01",
+  "title": "App Insights Unlocked: A Data Analytics Challenge",
+  "dataset": "Google Play Store apps (Kaggle: lava18/google-play-store-apps)",
+  "overview": "A tech product team analyzes Google Play Store listings to learn which categories, pricing models, sizes, and update habits are associated with higher ratings, reviews, and installs.",
+  "problem_statement": "Identify the factors that contribute to app success on Google Play \u2014 especially ratings, popular categories, and the impact of size and price on reviews and installs \u2014 so developers, product managers, and marketing can improve offerings.",
+  "methodology": [
+    "Ingest the public Play Store catalog and optional user-review table.",
+    "Clean invalid rows, parse installs/price/size, coerce dates, drop duplicate app names.",
+    "Build success metrics: mean rating, install volume, and review volume.",
+    "Answer the assignment's basic, medium, and advanced questions with grouped stats and charts.",
+    "Translate patterns into product, pricing, and update recommendations."
+  ],
+  "data_overview": {
+    "rows_raw": 10841,
+    "rows_clean": 9659,
+    "columns": [
+      "App",
+      "Category",
+      "Rating",
+      "Reviews",
+      "Size",
+      "Installs",
+      "Type",
+      "Price",
+      "Content Rating",
+      "Genres",
+      "Last Updated",
+      "Current Ver",
+      "Android Ver",
+      "Installs_num"
+    ],
+    "free_share": 0.922,
+    "mean_rating": 4.173,
+    "categories": 33
+  },
+  "key_findings": [
+    "Average listing rating is 4.17/5 among rated apps; 77% of rated apps score 4.0 or higher.",
+    "92% of unique apps are free; paid apps are a small slice of the catalog.",
+    "Install volume concentrates in ['GAME', 'COMMUNICATION', 'TOOLS'].",
+    "Installs and ratings are weakly related (r=0.040); popularity is not the same as satisfaction.",
+    "Content rating is dominated by Everyone, so family-safe design is the default market."
+  ],
+  "limitations": [
+    "Installs are stored as lower-bound buckets (e.g. 10,000+), so volume is approximate.",
+    "Many sizes are 'Varies with device', reducing size analyses.",
+    "Ratings miss apps with too few reviews; survivorship bias favors visible apps.",
+    "Review sentiment depends on an auxiliary file that may be incomplete.",
+    "The catalog is a snapshot, not a complete live Play Store."
+  ],
+  "conclusion": "Success on Play is a mix of category choice, high ratings, and distribution muscle. Free, frequently updated apps in high-demand categories capture most installs, while quality (rating and reviews) still differentiates products inside a category.",
+  "recommendations": [
+    "Benchmark new apps against a 4.0+ rating and category-level install leaders.",
+    "Prioritize GAME, COMMUNICATION, and other high-install categories only when the product can match quality bars.",
+    "Keep APK/asset size competitive; treat large binaries as a conversion risk.",
+    "Default to free + ads/IAP unless a paid niche has proven willingness to pay.",
+    "Ship a regular update cadence; stale last-updated dates correlate with weaker store presence."
+  ],
+  "qa": {
+    "basic": [
+      {
+        "q": "Average rating of apps",
+        "a": 4.173
+      },
+      {
+        "q": "Unique categories",
+        "a": 33
+      },
+      {
+        "q": "App size distribution (MB)",
+        "a": {
+          "mean": 20.39,
+          "50%": 12.0,
+          "min": 0.01,
+          "max": 100.0
+        }
+      },
+      {
+        "q": "Free vs paid counts",
+        "a": {
+          "Free": 8903,
+          "Paid": 756
+        }
+      },
+      {
+        "q": "Most common content rating",
+        "a": "Everyone"
+      },
+      {
+        "q": "Top 5 most installed apps",
+        "a": [
+          {
+            "App": "Google Play Books",
+            "Installs": "1,000,000,000+",
+            "Category": "BOOKS_AND_REFERENCE",
+            "Rating": 3.9
+          },
+          {
+            "App": "Messenger \u2013 Text and Video Chat for Free",
+            "Installs": "1,000,000,000+",
+            "Category": "COMMUNICATION",
+            "Rating": 4.0
+          },
+          {
+            "App": "WhatsApp Messenger",
+            "Installs": "1,000,000,000+",
+            "Category": "COMMUNICATION",
+            "Rating": 4.4
+          },
+          {
+            "App": "Google Chrome: Fast & Secure",
+            "Installs": "1,000,000,000+",
+            "Category": "COMMUNICATION",
+            "Rating": 4.3
+          },
+          {
+            "App": "Gmail",
+            "Installs": "1,000,000,000+",
+            "Category": "COMMUNICATION",
+            "Rating": 4.3
+          }
+        ]
+      },
+      {
+        "q": "Apps with rating 4.0+",
+        "a": 6286
+      },
+      {
+        "q": "Average reviews free vs paid",
+        "a": {
+          "Free": 274689.9,
+          "Paid": 10919.5
+        }
+      },
+      {
+        "q": "Largest average size category",
+        "a": {
+          "GAME": 41.87
+        }
+      },
+      {
+        "q": "Apps last updated in 2018",
+        "a": 6284
+      }
+    ],
+    "medium": [
+      {
+        "q": "Correlation installs vs rating",
+        "a": 0.0401
+      },
+      {
+        "q": "Highest average rating categories",
+        "a": {
+          "EVENTS": 4.436,
+          "EDUCATION": 4.364,
+          "ART_AND_DESIGN": 4.357,
+          "BOOKS_AND_REFERENCE": 4.345,
+          "PERSONALIZATION": 4.332
+        }
+      },
+      {
+        "q": "Price vs rating correlation (paid apps)",
+        "a": -0.1126
+      },
+      {
+        "q": "Rating mean by content rating",
+        "a": {
+          "Adults only 18+": 4.3,
+          "Everyone": 4.166,
+          "Everyone 10+": 4.226,
+          "Mature 17+": 4.122,
+          "Teen": 4.226,
+          "Unrated": 4.1
+        }
+      },
+      {
+        "q": "Genres with most 1M+ install apps",
+        "a": {
+          "Tools": 273,
+          "Action": 189,
+          "Entertainment": 179,
+          "Photography": 173,
+          "Productivity": 147,
+          "Communication": 140,
+          "Sports": 125,
+          "Casual": 122
+        }
+      },
+      {
+        "q": "Update recency (days since last update vs max date)",
+        "a": 281.2
+      },
+      {
+        "q": "Correlation size vs installs",
+        "a": 0.1343
+      },
+      {
+        "q": "Highest review apps and ratings",
+        "a": [
+          {
+            "App": "Facebook",
+            "Reviews": 78158306,
+            "Rating": 4.1
+          },
+          {
+            "App": "WhatsApp Messenger",
+            "Reviews": 69119316,
+            "Rating": 4.4
+          },
+          {
+            "App": "Instagram",
+            "Reviews": 66577313,
+            "Rating": 4.5
+          },
+          {
+            "App": "Messenger \u2013 Text and Video Chat for Free",
+            "Reviews": 56642847,
+            "Rating": 4.0
+          },
+          {
+            "App": "Clash of Clans",
+            "Reviews": 44891723,
+            "Rating": 4.6
+          }
+        ]
+      },
+      {
+        "q": "Content rating mix free vs paid",
+        "a": {
+          "Adults only 18+": {
+            "Free": 0.0,
+            "Paid": 0.0
+          },
+          "Everyone": {
+            "Free": 0.814,
+            "Paid": 0.866
+          },
+          "Everyone 10+": {
+            "Free": 0.033,
+            "Paid": 0.041
+          },
+          "Mature 17+": {
+            "Free": 0.042,
+            "Paid": 0.024
+          },
+          "Teen": {
+            "Free": 0.111,
+            "Paid": 0.069
+          },
+          "Unrated": {
+            "Free": 0.0,
+            "Paid": 0.0
+          }
+        }
+      },
+      {
+        "q": "Top 5 categories by installs",
+        "a": {
+          "GAME": 13878924415,
+          "COMMUNICATION": 11038276251,
+          "TOOLS": 8001771915,
+          "PRODUCTIVITY": 5793091369,
+          "SOCIAL": 5487867902
+        }
+      }
+    ],
+    "advanced": [
+      {
+        "q": "Top 10 highest-rated apps vs reviews/installs",
+        "a": [
+          {
+            "App": "Hojiboy Tojiboyev Life Hacks",
+            "Rating": 5.0,
+            "Reviews": 15,
+            "Installs": "1,000+"
+          },
+          {
+            "App": "American Girls Mobile Numbers",
+            "Rating": 5.0,
+            "Reviews": 5,
+            "Installs": "1,000+"
+          },
+          {
+            "App": "Awake Dating",
+            "Rating": 5.0,
+            "Reviews": 2,
+            "Installs": "100+"
+          },
+          {
+            "App": "Spine- The dating app",
+            "Rating": 5.0,
+            "Reviews": 5,
+            "Installs": "500+"
+          },
+          {
+            "App": "Girls Live Talk - Free Text and Video Chat",
+            "Rating": 5.0,
+            "Reviews": 6,
+            "Installs": "100+"
+          },
+          {
+            "App": "Online Girls Chat Group",
+            "Rating": 5.0,
+            "Reviews": 5,
+            "Installs": "100+"
+          },
+          {
+            "App": "Speeding Joyride & Car Meet App",
+            "Rating": 5.0,
+            "Reviews": 3,
+            "Installs": "100+"
+          },
+          {
+            "App": "SUMMER SONIC app",
+            "Rating": 5.0,
+            "Reviews": 4,
+            "Installs": "500+"
+          },
+          {
+            "App": "Prosperity",
+            "Rating": 5.0,
+            "Reviews": 16,
+            "Installs": "100+"
+          },
+          {
+            "App": "Mindvalley U Tallinn 2018",
+            "Rating": 5.0,
+            "Reviews": 1,
+            "Installs": "100+"
+          }
+        ]
+      },
+      {
+        "q": "Recent monthly update counts",
+        "a": {
+          "2017-09": 158,
+          "2017-10": 214,
+          "2017-11": 204,
+          "2017-12": 247,
+          "2018-01": 286,
+          "2018-02": 296,
+          "2018-03": 407,
+          "2018-04": 394,
+          "2018-05": 691,
+          "2018-06": 913,
+          "2018-07": 2320,
+          "2018-08": 977
+        }
+      },
+      {
+        "q": "Average rating by install bin",
+        "a": {
+          "<1k": 4.198,
+          "1k-10k": 4.031,
+          "10k-100k": 4.095,
+          "100k-1M": 4.204,
+          "1M-10M": 4.271,
+          "10M+": 4.353
+        }
+      },
+      {
+        "q": "Review sentiment high vs low rated apps",
+        "a": {
+          "Negative": {
+            "low": 0.298,
+            "high": 0.221
+          },
+          "Neutral": {
+            "low": 0.218,
+            "high": 0.133
+          },
+          "Positive": {
+            "low": 0.484,
+            "high": 0.646
+          }
+        }
+      },
+      {
+        "q": "Highest-rated genres (n>=30)",
+        "a": {
+          "mean": {
+            "Events": 4.436,
+            "Puzzle": 4.371,
+            "Art & Design": 4.35,
+            "Books & Reference": 4.343,
+            "Personalization": 4.332,
+            "Parenting": 4.3,
+            "Education": 4.294,
+            "Board": 4.288
+          },
+          "median": {
+            "Events": 4.5,
+            "Puzzle": 4.4,
+            "Art & Design": 4.4,
+            "Books & Reference": 4.5,
+            "Personalization": 4.4,
+            "Parenting": 4.4,
+            "Education": 4.4,
+            "Board": 4.3
+          },
+          "count": {
+            "Events": 45,
+            "Puzzle": 123,
+            "Art & Design": 62,
+            "Books & Reference": 171,
+            "Personalization": 298,
+            "Parenting": 50,
+            "Education": 498,
+            "Board": 57
+          }
+        }
+      }
+    ]
+  },
+  "figures": [
+    "outputs\\app_insights\\figures\\01_rating_distribution.png",
+    "outputs\\app_insights\\figures\\02_category_counts.png",
+    "outputs\\app_insights\\figures\\03_size_by_type.png",
+    "outputs\\app_insights\\figures\\04_category_installs.png",
+    "outputs\\app_insights\\figures\\05_rating_vs_installs.png",
+    "outputs\\app_insights\\figures\\06_update_trend.png"
+  ],
+  "stakeholders": {
+    "internal": [
+      "App Developers",
+      "Product Managers",
+      "Marketing Team",
+      "Senior Management"
+    ],
+    "external": [
+      "App Users",
+      "Advertisers",
+      "Partners"
+    ]
+  }
+}

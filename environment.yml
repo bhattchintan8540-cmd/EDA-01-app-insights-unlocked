@@ -1,0 +1,17 @@
+name: eda-projects
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - scipy
+  - statsmodels
+  - pytest
+  - requests
+  - pip
+  - pip:
+      - python-pptx
