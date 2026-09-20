@@ -6,17 +6,6 @@ This repository is a standalone Exploratory Data Analysis project from the assig
 
 ## Presentations
 
-Slides follow:
-
-1. Overview
-2. Problem Statement
-3. Proposed Methodology
-4. Data Overview
-5. Key Findings
-6. Limitations
-7. Conclusion
-8. Recommendations
-
 - HTML: `presentations/EDA01_app_insights.html`
 - PowerPoint: `presentations/EDA01_app_insights.pptx`
 
